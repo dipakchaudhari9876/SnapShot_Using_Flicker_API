@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Navbar from './Component/Navbar/Navbar';
+import Mountain from './Component/Mountain/Mountain';
+import Beaches from './Component/Beaches/Beaches';
+import Bird from './Component/Bird/Bird';
+import Food from './Component/Food/Food';
+import Search from './Component/Search/Search';
+import AppProvider from './pages/AppContext';
 
-function App() {
+function App({ children }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Mountain />} />
+          <Route path='/beaches' element={<Beaches />} />
+          <Route path='/bird' element={<Bird />} />
+          <Route path='/food' element={<Food />} />
+          <Route path='/search' element={<Search />} />
+        </Routes>
+      </BrowserRouter>
+    </AppProvider>
+    //  
+
   );
 }
 
